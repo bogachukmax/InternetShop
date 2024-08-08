@@ -1,0 +1,86 @@
+header{
+   .logoImg{
+      width: 240px;
+      height: 40px;
+   }
+
+   .header-container{
+      padding: 20px;
+      background-color: #221f1f;
+   }
+
+   .btn-success{
+      color: white;
+   }
+
+   .input-group{
+      position: relative;
+
+      input {
+        padding-left: 40px;
+      }
+    
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 10px; 
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url("/search.png");
+        background-position: center;
+        background-size: contain;
+        z-index: 10;
+      }
+   }
+
+   .cartButton{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: 1s;
+
+      .cartImg{
+         transition: 1s;
+         width: 30px;
+         height: 30px;
+         background-image: url("/cartWhite.png");
+         background-position: center;
+         background-size: contain;
+         position: relative;
+
+         .badge {
+            transition: 1s;
+            position: absolute;
+            top: -9px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+
+            font-size: 12px;
+            color: white;
+            background-color: #00a046;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+      }
+
+      &:hover{
+         transition: 1s;
+         .cartImg{
+            transition: 1s;
+            background-image: url("/cartBlack.png");
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+         }
+      }
+   }
+}
