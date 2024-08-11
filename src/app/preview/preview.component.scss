@@ -1,0 +1,62 @@
+.goodList-item{
+   width: 250px;
+   height: 450px;
+   padding: 10px;
+   font-size: 14px;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   border-right: 1px solid rgb(123, 123, 123, 0.2);
+
+   &:hover{
+      box-shadow: -1px 9px 33px 0px rgba(0,0,0,0.51);
+   }
+
+
+   img{
+      width: 200px;
+      height: 150px;
+   }
+
+   .goodList-button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 70%;
+      width: 100%;
+      cursor: pointer;
+      
+      .goodList-name{
+         font-size: 14px;
+      }
+   }
+
+   .goodList-price{
+      margin-top: 40%;
+
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      span{
+         color: red;
+         font-size: 24px;
+      }
+
+      button{
+         padding: 0;
+         margin-top: -5px;
+         border: none;
+         background-color: transparent;
+         cursor: pointer;
+
+         img{
+            width: 50px;
+            height: 50px;
+         }
+      }
+   }
+}

@@ -1,0 +1,19 @@
+<div class="goodList-item">
+   <div class="goodList-button" routerLink="market">
+      <img [src]="img">
+   </div>
+   <div class="goodList-name">
+      <div *ngIf="name.length > 75">
+         {{ SmallerName() }}
+      </div>
+      <div *ngIf="name.length < 75">
+         {{name}}
+      </div>
+   </div>
+   <div class="goodList-price">
+      <span>{{price}}</span>
+      <button>
+         <img [src]="ButtonTF ? ButtonCheckedUrl : ButtonPlusUrl" alt="" (click)="PressButtonCart()">
+      </button>
+   </div>
+</div>

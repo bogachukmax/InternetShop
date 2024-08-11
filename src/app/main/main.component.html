@@ -23,3 +23,37 @@
       </div>
    </div>
 </header>
+
+<div class="goodList container">
+  <div class="main-list">
+   <h2>ТОП-товари</h2>
+   <div class="goodList-item">
+      <div *ngFor="let item of goods.goodList; let i = index">
+         <div *ngIf="i <= 4">
+            <app-preview 
+            [index]="i"
+            [img]="item.img"
+            [name]="item.name"
+            [price]="item.price"
+            [description]="item.description"
+            ></app-preview>
+         </div>
+
+         <div *ngIf="i >= 5">
+            <div [ngStyle]="{
+               'border-top':'1px solid rgb(123, 123, 123, 0.2)'
+            }">
+               <app-preview 
+               [index]="i"
+               [img]="item.img"
+               [name]="item.name"
+               [price]="item.price"
+               [description]="item.description"
+               ></app-preview>
+            </div>
+         </div>
+      </div>
+   </div>
+  </div>
+</div>
+

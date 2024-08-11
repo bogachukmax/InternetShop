@@ -6,5 +6,5 @@ export const routes: Routes = [
       path:"",
       component: MainComponent,
       title: "Main"
-   }
+   },
 ];
