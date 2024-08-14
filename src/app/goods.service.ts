@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 
+
+export type Item = {
+  img: string,
+  name: string,
+  price: string,
+  description: string,
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,12 +51,39 @@ export class GoodsService {
       description: "Super good Laptop",
     },
     {
-      img: "https://content1.rozetka.com.ua/goods/images/big/365944650.jpg",
-      name: "Laptop",
-      price: "125₴",
+      img: "https://content.rozetka.com.ua/goods/images/big/400169158.jpg",
+      name: "Ноутбук Lenovo IdeaPad 1 15AMN7 (82VG00HHRA) Cloud Grey / 15.6&quot; IPS Full HD / AMD Ryzen 3 7320U / RAM 16 ГБ / SSD 512 ГБ",
+      price: "15999₴",
+      description: "Super good Laptop",
+    },
+    {
+      img: "https://content2.rozetka.com.ua/goods/images/big/441270474.jpg",
+      name: "3D-принтер Creality K1C (CR-K1C)",
+      price: "28999₴",
+      description: "Super good Laptop",
+    },
+    {
+      img: "https://content2.rozetka.com.ua/goods/images/big/388684589.jpg",
+      name: "Шредер DA TSM410A-CD Офісний 4x12 (1410401011006)",
+      price: "3505₴",
+      description: "Super good Laptop",
+    },
+    {
+      img: "https://content1.rozetka.com.ua/goods/images/big/101471043.jpg",
+      name: "Акустична система Edifier R1080BT Black",
+      price: "3499₴",
       description: "Super good Laptop",
     },
   ]
-
-  constructor() { }
+  
+  busket: Item[] = [
+    {
+      img: "https://content1.rozetka.com.ua/goods/images/big/365944650.jpg",
+      name: "Ноутбук HP Victus Gaming Laptop 15-fa0020ua (8F2S4EA) Mica Silver / Intel® Core™ i5-12450H / RAM 16 ГБ / SSD 512 ГБ / nVidia GeForce RTX 3050, 4 ГБ / Підсвітка клавіатури ",
+      price: "22999₴",
+      description: "Super good Laptop",
+    },
+  ];
+  
+  constructor() {} 
 }

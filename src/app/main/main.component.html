@@ -1,48 +1,42 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<header>
-   <div class="container-fluid header-container">
-      <div class="row justify-content-start">
-         <div class="col-2"></div>
-         <div class="col-2">
-            <img src="https://content.rozetka.com.ua/mb_logo/image_site_light_theme/original/458307143.svg" alt="" class="logoImg">
-         </div>
-         <div class="col-4">
-            <div class="input-group">
-               <input type="text" class="form-control find-input" placeholder="Я шукаю..." aria-label="Recipient's username" aria-describedby="button-addon2">
-               <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon2">Знайти</button>
+<div>
+   <header>
+      <div class="container-fluid header-container">
+         <div class="row justify-content-start">
+            <div class="col-2"></div>
+            <div class="col-2">
+               <img src="https://content.rozetka.com.ua/mb_logo/image_site_light_theme/original/458307143.svg" alt="" class="logoImg">
+            </div>
+            <div class="col-4">
+               <div class="input-group">
+                  <input type="text" class="form-control find-input" placeholder="Я шукаю..." aria-label="Recipient's username" aria-describedby="button-addon2" id="findLabel" (input)="GettingValue($event)">
+                  <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon2" (click)="Finding()">Знайти</button>
+               </div>
+            </div>
+            <div class="col-2">
+               <div style="display: flex;">
+                  <button class="cartButton" (click)="CartBtn()">
+                     <div class="cartImg">
+                        <div class="badge">{{goods.busket.length}}</div>
+                     </div>
+                  </button>
+      
+                  <button class="mainButton">
+                     <a routerLink="">Головна</a>
+                  </button>
+               </div>
             </div>
          </div>
-         <div class="col-2">
-            <button class="cartButton">
-               <div class="cartImg">
-                  <div class="badge">0</div>
-               </div>
-            </button>
-         </div>
       </div>
-   </div>
-</header>
-
-<div class="goodList container">
-  <div class="main-list">
-   <h2>ТОП-товари</h2>
-   <div class="goodList-item">
-      <div *ngFor="let item of goods.goodList; let i = index">
-         <div *ngIf="i <= 4">
-            <app-preview 
-            [index]="i"
-            [img]="item.img"
-            [name]="item.name"
-            [price]="item.price"
-            [description]="item.description"
-            ></app-preview>
-         </div>
-
-         <div *ngIf="i >= 5">
-            <div [ngStyle]="{
-               'border-top':'1px solid rgb(123, 123, 123, 0.2)'
-            }">
+   </header>
+   
+   <div class="goodList container">
+     <div class="main-list">
+      <h2>ТОП-товари</h2>
+      <div class="goodList-item">
+         <div *ngFor="let item of filteredGoods; let i = index">
+            <div *ngIf="i <= 4">
                <app-preview 
                [index]="i"
                [img]="item.img"
@@ -51,9 +45,29 @@
                [description]="item.description"
                ></app-preview>
             </div>
+   
+            <div *ngIf="i >= 5">
+               <div [ngStyle]="{
+                  'border-top':'1px solid rgb(123, 123, 123, 0.2)'
+               }">
+                  <app-preview 
+                  [index]="i"
+                  [img]="item.img"
+                  [name]="item.name"
+                  [price]="item.price"
+                  [description]="item.description"
+                  ></app-preview>
+               </div>
+            </div>
          </div>
       </div>
-   </div>
-  </div>
-</div>
+     </div>
 
+      <app-busket 
+      [isClosed]="isClosed" 
+      [style.display]="isClosed ? 'none' : 'block'" 
+      style="z-index: 10;" 
+      (closed)="handleClosedEvent($event)">
+      </app-busket>
+   </div>
+</div>

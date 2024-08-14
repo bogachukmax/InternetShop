@@ -1,0 +1,31 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="busket-list">
+   <div class="busket-main">
+      <div class="h3-busket">
+         <h3>Кошик</h3>
+         <button (click)="btnCloseOpen()"></button>
+      </div>
+      <div>
+         <ul *ngFor="let item of busketListArray; let i = index" class="busket-items">
+            <li class="busket-items-inside">
+               <div>
+                  <img src={{item.img}} alt="">
+               </div>
+
+               <div>
+                  <span>{{item.name.slice(0, 170)}}</span>
+               </div>
+
+               <div (click)="checking($event)"> 
+                  <button class="verticalDots">
+                     <div class="verticalDotsMenu" style="display: none;">
+                        <button (click)="deleting($event, i)">Прибрати</button>
+                     </div>
+                  </button>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
