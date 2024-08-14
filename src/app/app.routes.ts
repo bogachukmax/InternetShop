@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
    {
@@ -7,4 +8,9 @@ export const routes: Routes = [
       component: MainComponent,
       title: "Main"
    },
+   {
+      path: 'admin',
+      component: AdminComponent,
+      title: 'Admin'
+   }
 ];
