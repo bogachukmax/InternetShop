@@ -40,7 +40,6 @@ export class MainComponent {
   }
 
   handleClosedEvent(closed: boolean) {
-    console.log("Received closed event from busket: " + closed);
     this.isClosed = closed;
   }
 
