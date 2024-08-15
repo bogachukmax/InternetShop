@@ -7,22 +7,38 @@
          <button (click)="btnCloseOpen()"></button>
       </div>
       <div>
-         <ul *ngFor="let item of busketListArray; let i = index" class="busket-items">
-            <li class="busket-items-inside">
-               <div>
-                  <img src={{item.img}} alt="">
+         <ul *ngFor="let item of busketList.busket; let i = index" class="busket-items">
+            <li style="list-style-type: none; width: 100%;">
+               <div class="busket-items-inside">
+                  <div>
+                     <img src={{item.img}} alt="">
+                  </div>
+   
+                  <div>
+                     <span>{{item.name.slice(0, 170)}}</span>
+                  </div>
+   
+                  <div (click)="checking($event)"> 
+                     <button class="verticalDots">
+                        <div class="verticalDotsMenu" style="display: none;">
+                           <button (click)="deleting(i)">Прибрати</button>
+                        </div>
+                     </button>
+                  </div>
                </div>
-
-               <div>
-                  <span>{{item.name.slice(0, 170)}}</span>
-               </div>
-
-               <div (click)="checking($event)"> 
-                  <button class="verticalDots">
-                     <div class="verticalDotsMenu" style="display: none;">
-                        <button (click)="deleting($event, i)">Прибрати</button>
-                     </div>
+               <div class="busket-buttons">
+                  <button class="btn btn-light" (click)="btnPlus(item)">
+                     <div>+</div>
                   </button>
+
+                  <input type="number" [value]="item.amount">
+
+                  <button class="btn btn-light" (click)="btnMinus(item)">
+                     <div class="minusBtn">-</div>
+                  </button>
+                  <div class="price">
+                     {{calculateTotalPrice(item.price, item.amount)}}
+                  </div>
                </div>
             </li>
          </ul>

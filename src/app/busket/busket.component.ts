@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { GoodsService } from '../goods.service';
 import { NgFor, NgIf } from '@angular/common';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-busket',
@@ -15,8 +16,7 @@ export class BusketComponent {
   @Output() closed = new EventEmitter<boolean>();
 
   busketList = inject(GoodsService);
-  busketListArray = this.busketList.busket;
-  
+
   checking(event:MouseEvent) {
     const clickedElement = event.target as HTMLElement;
 
@@ -25,18 +25,37 @@ export class BusketComponent {
     
     if (childDiv) {
       childDiv.style.display = "block";
-    } else {
+    } else {}
+  }
 
+  deleting(index: number) {
+    this.busketList.removeFromBusket(index);
+  }
+ 
+  btnCloseOpen(){
+    this.isClosed = true;
+    this.closed.emit(true);
+  }
+
+  btnPlus(item: any) {
+    if (item.amount < 9999) {
+      item.amount += 1;
+    } else{
+      item.amount = 9999;
+    }
+  }
+  
+  btnMinus(item: any) {
+    if (item.amount > 1) {
+      item.amount -= 1;
     }
   }
 
-  deleting(event:MouseEvent, index:number){
+  calculateTotalPrice(price: string, amount: number): string {
+    const priceValue = parseFloat(price.replace('₴', '').replace(',', ''));
+    
+    const totalPrice = priceValue * amount;
 
-  }
-
-  btnCloseOpen(){
-    console.log("Button from busket: " + this.isClosed);
-    this.isClosed = true;
-    this.closed.emit(true);
+    return `${totalPrice.toFixed(0)}₴`;
   }
 } 
