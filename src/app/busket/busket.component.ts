@@ -31,6 +31,10 @@ export class BusketComponent {
   deleting(index: number) {
     this.busketList.removeFromBusket(index);
   }
+
+  deletingAll(){
+    this.busketList.removeAllFromBusket();
+  }
  
   btnCloseOpen(){
     this.isClosed = true;
@@ -57,5 +61,15 @@ export class BusketComponent {
     const totalPrice = priceValue * amount;
 
     return `${totalPrice.toFixed(0)}₴`;
+  }
+
+  getAllPrice(){
+    let totalPrice = 0;
+    for (let index = 0; index < this.busketList.busket.length; index++) {
+      const price = parseFloat(this.busketList.busket[index].price.replace('₴', '').replace(',', ''));
+      const amount = this.busketList.busket[index].amount;
+      totalPrice += price * amount;
+    }
+    return totalPrice
   }
 } 
