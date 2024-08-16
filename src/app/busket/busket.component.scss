@@ -143,6 +143,35 @@
             display: flex;
          }
       }
+
+      .finalPurchase{
+         display: flex;
+         justify-content: center;
+
+         .purchase-box{
+            background-color: #e5f5ec;
+            border: 1px solid #00a046;
+            border-radius: 10px;
+            font-size: 36px;
+            padding: 10px;
+
+            button{
+               font-size: 26px;
+               margin-left: 15px;
+               background-color: #00a046;
+               border: none;
+               border-radius: 10px;
+               padding: 5px;
+               color: #fff;
+               transition: 1s;
+
+               &:hover{
+                  transition: 1s;
+                  background-color: #00883b;
+               }
+            }
+         }
+      }
    }
 }
 

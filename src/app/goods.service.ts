@@ -105,4 +105,9 @@ export class GoodsService {
     this.busket = this.busket.filter((_, i) => i !== index);
     this.busketChanged.emit();
   }
+
+  removeAllFromBusket() {
+    this.busket = this.busket = [];
+    this.busketChanged.emit();
+  }
 }
