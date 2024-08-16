@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -10,6 +10,22 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
-  inpControl = new FormControl('')
+  inpControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(4)
+  ])
+
+  constructor(){
+    console.log(this.inpControl.value); 
+  }
+
+  onLog(){
+    if(this.inpControl.value === 'admin'){
+      console.log('true');      
+    } else{
+      console.log('false');
+      
+    }
+  }
   
 }
