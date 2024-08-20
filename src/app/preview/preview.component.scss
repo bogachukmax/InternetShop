@@ -57,3 +57,55 @@
       }
    }
 }
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+   .goodList-item{
+      width: 220px;
+      height: 370px;
+
+      .goodList-button{
+         img{
+            width: 170px;
+            height: 120px;
+         }
+      }
+
+      .goodList-name{
+         display: flex;
+         justify-content: center;
+
+         div{
+            display: inline-block;
+            width: 200px;
+         }
+      }
+
+      .goodList-price{
+         margin-top: 20%;
+      }
+   }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+   .goodList-item{
+      width: 180px;
+      height: 370px;
+
+      .goodList-button{
+         img{
+            width: 150px;
+            height: 110px;
+         }
+      }
+
+      .goodList-name{
+         display: flex;
+         justify-content: center;
+
+         div{
+            display: inline-block;
+            width: 170px;
+         }
+      }
+   }
+}

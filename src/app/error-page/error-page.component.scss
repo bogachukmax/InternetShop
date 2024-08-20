@@ -105,6 +105,12 @@ header{
          }
       }
    }
+
+   @media (min-width: 1024px) and (max-width: 1400px) {
+      .row-component{
+         justify-content: center;
+      }
+   }
 }
 
 .container-of-item{
@@ -144,4 +150,8 @@ header{
          transition: 0.2s ease;
       }
    }
+}
+
+.containerFor{
+   width: 100px;
 }

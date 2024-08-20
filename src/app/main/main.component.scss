@@ -105,6 +105,11 @@ header{
          }
       }
    }
+   @media (min-width: 1024px) and (max-width: 1400px) {
+      .row-component{
+         justify-content: center;
+      }
+   }
 }
 
 .goodList{
