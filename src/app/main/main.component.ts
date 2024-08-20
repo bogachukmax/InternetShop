@@ -35,7 +35,6 @@ export class MainComponent {
   isClosed = true;
 
   CartBtn() {
-    console.log("Button from main: " + this.isClosed);
     this.isClosed = false;
   }
 

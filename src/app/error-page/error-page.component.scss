@@ -1,0 +1,147 @@
+header{
+   .logoImg{
+      width: 240px;
+      height: 40px;
+   }
+
+   .header-container{
+      padding: 20px;
+      background-color: #221f1f;
+   }
+
+   .btn-success{
+      color: white;
+   }
+
+   .input-group{
+      position: relative;
+
+      input {
+        padding-left: 40px;
+      }
+    
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 10px; 
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url("/search.png");
+        background-position: center;
+        background-size: contain;
+        z-index: 10;
+      }
+   }
+
+   .cartButton{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: 1s;
+
+      .cartImg{
+         transition: 2s;
+         width: 30px;
+         height: 30px;
+         background-image: url("/cartWhite.png");
+         background-position: center;
+         background-size: contain;
+         position: relative;
+
+         .badge {
+            transition: 2s;
+            position: absolute;
+            top: -9px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+
+            font-size: 12px;
+            color: white;
+            background-color: #00a046;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+      }
+
+      &:hover{
+         transition: 0.5s;
+         .cartImg{
+            transition: 2s;
+            background-image: url("/cartBlack.png");
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+         }
+      }
+   }
+
+   .mainButton{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 25px;
+      margin-left: 25px;
+
+      a{
+         transition: 1s;
+         color: aliceblue;
+         text-decoration: none;
+      }
+
+      &:hover{
+         a{
+            transition: 1s;
+            color: rgb(230, 133, 133);
+         }
+      }
+   }
+}
+
+.container-of-item{
+   width: 1200px;
+   height: 720px;
+
+   .error-img{
+      width: 100%;
+      height: 100%;
+   
+      background-image: url("https://sitechecker.pro/wp-content/uploads/2023/06/404-status-code.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+   }
+
+   button{
+      border: none;
+      border-radius: 8px;
+      box-sizing: border-box;
+      outline: none;
+      position: relative;
+      text-align: center;
+
+      width: 200px;
+      height: 50px;
+      font-size: 16px;
+      background-color: #00ad4b;
+      transition: 0.2s ease;
+      a{
+         color: #fff;
+         font-size: 16px;
+         text-decoration: none;
+      }
+      &:hover{
+         background-color: #00a046;
+         transition: 0.2s ease;
+      }
+   }
+}

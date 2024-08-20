@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject, Input, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
-import { GoodsService, Item } from '../goods.service';
+import {GoodsService} from '../goods.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,30 +11,23 @@ import { Subscription } from 'rxjs';
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.scss']
 })
-export class PreviewComponent implements OnInit, OnDestroy {
+export class PreviewComponent{
   @Input() index = 0;
   @Input() img = "";
   @Input() name = "";
   @Input() price = "";
   @Input() description = "";
+  @Input() coments = [];
+
 
   ButtonPlusUrl = `/cartPlus.png`;
   ButtonCheckedUrl = `/cartChecked.png`;
   ButtonTF: boolean = false;
 
   busketList = inject(GoodsService);
-  
-  subscription: Subscription = new Subscription();
 
   ngOnInit() {
-    this.subscription = this.busketList.busketChanged.subscribe(() => {
-      this.checkButtonState();
-    });
     this.checkButtonState();
-  }
-  
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   SmallerName(){
@@ -51,9 +44,18 @@ export class PreviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  AddToBusket(){
-    let busketItem = this.busketList.goodList[this.index];
-    this.busketList.busket.push(busketItem);
+  AddToBusket() {
+    const itemExists = this.busketList.busket.some(item => 
+      item.name === this.busketList.goodList[this.index].name &&
+      item.price === this.busketList.goodList[this.index].price &&
+      item.description === this.busketList.goodList[this.index].description
+    );
+  
+    if (!itemExists) { 
+      let busketItem = this.busketList.goodList[this.index];
+      this.busketList.busket.push(busketItem);
+      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
+    }
   }
 
   DeleteToBusket(){
@@ -68,7 +70,11 @@ export class PreviewComponent implements OnInit, OnDestroy {
   }
 
   checkButtonState() {
-    this.ButtonTF = this.busketList.busket.some(item => item === this.busketList.goodList[this.index]);
+    if (this.busketList.busket.some(item => item === this.busketList.goodList[this.index])) {
+      this.ButtonTF = true;
+    } else{
+      this.ButtonTF = false;
+    }
   }
 
   constructor() {}
