@@ -3,25 +3,24 @@
 <div>
    <header>
       <div class="container-fluid header-container">
-         <div class="row justify-content-start">
-            <div class="col-2"></div>
-            <div class="col-2">
+         <div class="row row-component row-cols-3">
+            <div class="col-xxl-4 col-xl-2 col-lg-1 justify-content-end" style="display: flex; margin-right: 30px;">
                <img src="https://content.rozetka.com.ua/mb_logo/image_site_light_theme/original/458307143.svg" alt="" class="logoImg">
             </div>
-            <div class="col-4">
+            <div class=" col-xl-4 col-xl-3 col-lg-4">
                <div class="input-group">
-                  <input type="text" class="form-control find-input" placeholder="Я більше не шукаю... Мені просто лінь :)" aria-label="Recipient's username" aria-describedby="button-addon2" id="findLabel">
+                  <input type="text" class="form-control find-input" placeholder="Я більше не шукаю..." aria-label="Recipient's username" aria-describedby="button-addon2" id="findLabel" disabled>
                   <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon2">Знайти</button>
                </div>
             </div>
-            <div class="col-2">
+            <div class="col-1">
                <div style="display: flex;">
                   <button class="cartButton" (click)="CartBtn()">
                      <div class="cartImg">
                         <div class="badge">{{goods.busket.length}}</div>
                      </div>
                   </button>
-      
+
                   <button class="mainButton">
                      <a routerLink="/shop">Головна</a>
                   </button>
