@@ -44,14 +44,17 @@ export class BusketComponent {
   btnPlus(item: any) {
     if (item.amount < 9999) {
       item.amount += 1;
+      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
     } else{
       item.amount = 9999;
+      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
     }
   }
   
   btnMinus(item: any) {
     if (item.amount > 1) {
       item.amount -= 1;
+      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
     }
   }
 
