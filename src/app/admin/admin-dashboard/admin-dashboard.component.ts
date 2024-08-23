@@ -78,7 +78,6 @@ export class AdminDashboardComponent {
 
     this.goods.saveToLocalStorage('busket', this.goods.busket);
     this.goods.saveToLocalStorage('goodList', this.goods.goodList);
-    console.log(this.goods.goodList);
     
   }
 }
