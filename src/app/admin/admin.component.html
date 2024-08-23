@@ -1,6 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<div class="container-fluid" *ngIf="valid === false">
+<div class="container-fluid" *ngIf="!valid">
     <div class="container logIn">
         <div class="form">
             <input type="text" (keypress)="onEnter($event)" [formControl]="inpControl" placeholder="pull up if you're the real one">
@@ -10,7 +10,7 @@
 </div>
 
 
-<app-admin-dashboard *ngIf="valid === true"></app-admin-dashboard>
+<app-admin-dashboard *ngIf="valid"></app-admin-dashboard>
 <!-- <app-admin-dashboard></app-admin-dashboard> -->
 
 <router-outlet></router-outlet>

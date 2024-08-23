@@ -13,6 +13,11 @@ import { NgIf } from '@angular/common';
 })
 export class AdminComponent {
   valid: boolean = false
+  checker: any
+  logCheck: { isLogged: boolean } = {
+    isLogged: this.valid
+  }
+
   inpControl = new FormControl('', [
     Validators.required
   ])
@@ -23,12 +28,22 @@ export class AdminComponent {
       // console.log(this.inpControl.valid);
       
     })
+  }
 
+  ngOnInit() {
+    const sessionData = sessionStorage.getItem('LogCheck')
+    if(sessionData){
+      this.checker = JSON.parse(sessionData)
+      this.valid = this.checker.isLogged
+      this.logCheck.isLogged = this.valid
+    }
   }
 
   onLog(){
     if(this.inpControl.value === 'admin' && this.inpControl.valid){
       this.valid = true
+      this.logCheck.isLogged = this.valid
+      sessionStorage.setItem('LogCheck', JSON.stringify(this.logCheck))
     } else{
       this.valid = false
     }

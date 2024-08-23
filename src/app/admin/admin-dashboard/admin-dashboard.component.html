@@ -2,21 +2,25 @@
 <div class="container-fluid">
     <div class="container">
         <div class="forms">
-            <form action="">
-                <label for="name">Name:</label>
-                <input type="text" name="name">
+            <form [formGroup]="myForm">
+                <label for="itmName">Назва:</label>
+                <input [style.borderColor]="nameBorder" type="text" formControlName="name" name="itmName">
+                <p class="wrongVal" *ngIf="this.myForm.controls.name.errors && this.myForm.controls.name.value !== ''"><span>❗</span> Тільки літери та пробіли</p>
+                
+                <label for="description">Опис:</label>
+                <textarea placeholder="від 1 до 500 символів" (input)="symbolsTrack()" maxlength="{{maxLengthDesc}}" [style.borderColor]="descBorder" name="description" formControlName="description"></textarea>
+                <p class="wrongVal" style="width: 200px;" *ngIf="this.myForm.controls.description.errors && this.myForm.controls.description.value !== ''"><span>❗</span> Тільки літери, числа та пробіли</p>
+                <div class="symbolsTracker"> {{symbolsLeft}} </div>
+                <label for="image">Картинка:</label>
+                <input [style.borderColor]="imgBorder" placeholder="url" type="url" name="image" formControlName="img">
+                <p class="wrongVal" style="width: 220px;"*ngIf="this.myForm.controls.img.errors && this.myForm.controls.img.value !== ''"><span>❗</span> Не вдалось завантажити картинку</p>
     
-                <label for="description">Description:</label>
-                <textarea name="description"></textarea>
-    
-                <label for="image">Image:</label>
-                <input type="url" name="image">
-    
-                <label for="cost">Cost:</label>
-                <input type="number" name="cost">
+                <label for="cost">Ціна:</label>
+                <input type="number" placeholder="від 1 до 1 000 000" min="1" max="1000000" name="cost" formControlName="cost">
             </form>
+
+            <button class="addBtn" type="submit" (click)="onSubmit()">Додати</button>
         </div>
-
-
     </div>
+
 </div>
