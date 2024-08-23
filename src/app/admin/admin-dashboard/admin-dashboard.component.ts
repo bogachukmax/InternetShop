@@ -15,10 +15,10 @@ import { GoodsService } from '../../goods.service';
 export class AdminDashboardComponent {
   goods = inject(GoodsService);
   item: {name: string, description: string, img: string, price: string, amount: number, coments: []} = {
-    name: '',
-    description: '',
     img: '',
-    price: '',
+    name: '',
+    price: '1₴',
+    description: '',
     amount: 1,
     coments: []
   }
@@ -74,10 +74,11 @@ export class AdminDashboardComponent {
     this.item.description = prop.description.value!
     this.item.img = prop.img.value!
     this.item.price = `${prop.cost.value!}₴`
-    // console.log(this.item);
-    this.goods.goodList.push(this.item)
+    this.goods.goodList.push(this.item);
+
+    this.goods.saveToLocalStorage('busket', this.goods.busket);
     this.goods.saveToLocalStorage('goodList', this.goods.goodList);
-    this.goods.busket = this.goods.loadFromLocalStorage('busket') || [];
-    this.goods.goodList = this.goods.loadFromLocalStorage('goodList') || [];
+    console.log(this.goods.goodList);
+    
   }
 }
