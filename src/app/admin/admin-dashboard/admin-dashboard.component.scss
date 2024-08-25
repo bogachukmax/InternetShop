@@ -1,61 +1,75 @@
-.forms{
-    width: 100%;
-    height: 100%;
+.container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    form{
+    justify-content: space-evenly;
+    .forms{
+        width: 300px;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        transition: all 0.2s linear;
-
-        .wrongVal{
-            color: red;
-            text-align: left; 
+        align-items: center;
+        position: relative;
+        form{
             display: flex;
-            align-items: center;
-            justify-content: space-around; 
-            width: 160px;
-            span{
+            flex-direction: column;
+            transition: all 0.2s linear;
+    
+            .wrongVal{
+                color: red;
+                text-align: left; 
+                display: flex;
+                align-items: center;
+                justify-content: space-around; 
+                width: 160px;
+                span{
+                    font-size: 13px;
+                }
+            }
+    
+            label{
+                margin-top: 10px;
+            }
+            
+            input, textarea{
+               width: 220px;
+               border: 2px solid green;
+               border-radius: 3px;
+            }
+    
+            .symbolsTracker{
+                position: absolute;
+                top: 80px;
+                right: 540px;
                 font-size: 13px;
             }
         }
-
-        label{
-            margin-top: 10px;
+    
+        .addBtn{
+            border: 1px solid black;
+            border-radius: 3px;
+            background-color: green;
+            color: white;
+            text-transform: uppercase;
+            padding: 5px;
+            width: 100px;
+            margin-top: 20px;
+            transition: all 0.1s linear;
+            cursor: pointer;
+    
+            &:hover{
+                background-color: white;
+                border-color: green;
+                color: black;
+            }
         }
         
-        input, textarea{
-           width: 220px;
-           border: 2px solid green;
-           border-radius: 3px;
-        }
-
-        .symbolsTracker{
-            position: absolute;
-            top: 80px;
-            right: 540px;
-            font-size: 13px;
-        }
     }
 
-    .addBtn{
-        border: 1px solid black;
-        border-radius: 3px;
-        background-color: green;
-        color: white;
-        text-transform: uppercase;
-        padding: 5px;
-        width: 100px;
-        margin-top: 20px;
-        transition: all 0.1s linear;
-
-        &:hover{
-            background-color: white;
-            border-color: green;
-            color: black;
+    .history{
+        border: 2px solid black;
+        width: 300px;
+        overflow: scroll;
+        .historyImg{
+            width: 40px;
         }
     }
-    
 }

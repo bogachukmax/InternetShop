@@ -131,4 +131,9 @@ export class GoodsService {
     this.goodList[itemIndex].coments.push(coment);
     this.saveToLocalStorage('goodList', this.goodList);
   }
+
+  removeProduct(index: number) {
+    this.goodList.splice(index, 1);
+    this.saveToLocalStorage('goodList', this.goodList);
+  }
 }

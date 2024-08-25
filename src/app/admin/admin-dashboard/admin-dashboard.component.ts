@@ -3,7 +3,7 @@ import { Component, Inject, inject } from '@angular/core';
 import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { val } from '../shared/val.directive';
 import { imgUpload } from '../shared/imgUpload.directive';
-import { GoodsService } from '../../goods.service';
+import { GoodsService, Item } from '../../goods.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -14,6 +14,8 @@ import { GoodsService } from '../../goods.service';
 })
 export class AdminDashboardComponent {
   goods = inject(GoodsService);
+  products: Item[] = []
+  // products: {name: string, description: string, img: string, price: string, amount: number, coments: []}[] = this.goods.goodList
   item: {name: string, description: string, img: string, price: string, amount: number, coments: []} = {
     img: '',
     name: '',
@@ -30,54 +32,76 @@ export class AdminDashboardComponent {
   nameBorder: string = this.bgClGreen
   descBorder: string = this.bgClGreen
   imgBorder: string = this.bgClGreen
-  // costBorder: string = this.bgClGreen
+  costBorder: string = this.bgClGreen
+
   myForm = new FormGroup({
     name: new FormControl('', [
-      Validators.required, val(/^[a-zA-Z ]+$/, 'letters & spaces')
+      Validators.required, val(/^[а-яА-Яa-zA-Z ]+$/, 'letters & spaces')
     ]),
     description: new FormControl('', [
-      Validators.required, val(/^[a-zA-Z0-9 ]+$/, 'letters, numbers & spaces')
+      Validators.required, val(/^[а-яА-Яa-zA-Z0-9 ]+$/, 'letters, numbers & spaces')
     ]),
     img: new FormControl('', {
-      // validators: [Validators.required, Validators.pattern(/https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/)],
-      asyncValidators: [imgUpload],
-      updateOn: 'blur'
+      validators: [Validators.required],
+      asyncValidators: [imgUpload]
     }
      ),
     cost: new FormControl('', [
-      Validators.required, val(/^[0-9]+$/, 'only numbers')
+      Validators.required, val(/^[0-9]+$/, 'only numbers'),
+      Validators.maxLength(6)
     ]),
   })
 
   constructor() {    
     this.myForm.statusChanges.subscribe((status) => {
-      // console.log(this.myForm.controls.img.errors);   
       const nameForm = this.myForm.controls.name
       const descForm = this.myForm.controls.description
       const imgForm = this.myForm.controls.img
-      nameForm.errors !== null && nameForm.value !== '' ? this.nameBorder = this.bgClRed : this.nameBorder = this.bgClGreen
-      descForm.errors !== null && descForm.value !== '' ? this.descBorder = this.bgClRed : this.descBorder = this.bgClGreen
-      imgForm.errors !== null && imgForm.value !== '' ? this.imgBorder = this.bgClRed : this.imgBorder = this.bgClGreen
+      const costForm = this.myForm.controls.cost
+      
+      
+      nameForm.errors !== null && nameForm.value !== null && !nameForm.pristine ? this.nameBorder = this.bgClRed : this.nameBorder = this.bgClGreen
+      descForm.errors !== null && descForm.value !== null  && !descForm.pristine ? this.descBorder = this.bgClRed : this.descBorder = this.bgClGreen
+      imgForm.errors !== null && imgForm.value !== null && !imgForm.pristine ? this.imgBorder = this.bgClRed : this.imgBorder = this.bgClGreen
+      costForm.errors !== null && costForm.value !== '' && !costForm.pristine ? this.costBorder = this.bgClRed : this.costBorder = this.bgClGreen
     })
+    
+  
+  }
+
+  ngOnInit(){
+    this.products = this.goods.loadFromLocalStorage('goodList') || [];
   }
 
   symbolsTrack() {
-    // console.log(this.myForm.controls.description.value?.length);
     this.symbolsCounter = this.myForm.controls.description.value!.length
     let res = this.maxLengthDesc - this.symbolsCounter
     this.symbolsLeft = res
   }
 
   onSubmit(){
-    const prop = this.myForm.controls
-    this.item.name = prop.name.value!
-    this.item.description = prop.description.value!
-    this.item.img = prop.img.value!
-    this.item.price = `${prop.cost.value!}₴`
-    this.goods.goodList.push(this.item);
+    if(this.myForm.valid){
+      const newItem: Item = {
+        name: this.myForm.controls.name.value!,
+        description: this.myForm.controls.description.value!,
+        img: this.myForm.controls.img.value!,
+        price: `${this.myForm.controls.cost.value!}₴`,
+        amount: 1,
+        coments: []
+      }
+      this.goods.goodList.push(newItem)
+      this.products.push(newItem)
+      this.myForm.reset()
+      this.goods.saveToLocalStorage('goodList', this.goods.goodList);
+    }
 
-    this.goods.saveToLocalStorage('busket', this.goods.busket);
-    this.goods.saveToLocalStorage('goodList', this.goods.goodList);
-    
+  }
+
+  onDelete(index: number){
+    if(confirm('Вы уверены, что хотите удалить этот товар?')){
+      this.goods.removeProduct(index)
+      this.products.splice(index, 1)
+      this.goods.saveToLocalStorage('goodList', this.goods.goodList)
+    }
   }
 }
