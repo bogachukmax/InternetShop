@@ -2,15 +2,16 @@
 <div class="container-fluid">
     <div class="container">
         <div class="forms">
+            <p class="additionP">Додавання</p>
             <form [formGroup]="myForm">
                 <label for="itmName">Назва:</label>
                 <input [style.borderColor]="nameBorder" type="text" formControlName="name" name="itmName">
                 <p class="wrongVal" *ngIf="this.myForm.controls.name.errors && this.myForm.controls.name.value !== null && !this.myForm.controls.name.pristine"><span>❗</span> Тільки літери та пробіли</p>
                 
-                <label for="description">Опис:</label>
+                <label for="description">Опис({{symbolsLeft}}):</label>
                 <textarea placeholder="від 1 до 500 символів" (input)="symbolsTrack()" maxlength="{{maxLengthDesc}}" [style.borderColor]="descBorder" name="description" formControlName="description"></textarea>
                 <p class="wrongVal" style="width: 200px;" *ngIf="this.myForm.controls.description.errors && this.myForm.controls.description.value !== null && !this.myForm.controls.description.pristine"><span>❗</span> Тільки літери, числа та пробіли</p>
-                <div class="symbolsTracker"> {{symbolsLeft}} </div>
+                <!-- <div class="symbolsTracker"> {{symbolsLeft}} </div> -->
                 <label for="image">Картинка:</label>
                 <input [style.borderColor]="imgBorder" placeholder="url" type="url" name="image" formControlName="img">
                 <p class="wrongVal" style="width: 220px;"*ngIf="this.myForm.controls.img.errors && this.myForm.controls.img.value !== null && !this.myForm.controls.img.pristine"><span>❗</span> Не вдалось завантажити картинку</p>
@@ -24,12 +25,14 @@
         </div>
 
         <div class="history">
+            <p class="totalP">Історія | Всього: {{products.length}}</p>
             <div *ngFor="let item of products; let i = index">
-                <div>
-                    <img [src]="item.img" alt="{{item.name}}" width="100" height="100">
-                    <h3 style="font-size: 10px;">{{item.name}}</h3>
-                    <button (click)="onDelete(i)">Delete</button>
+                <div class="historyItem">
+                    <img [src]="item.img" alt="{{item.name}}">
+                    <p>{{item.name}}</p>
+                    <button (click)="onDelete(i)">Видалити</button>
                 </div>
+                <hr>
             </div>
         </div>
     </div>
