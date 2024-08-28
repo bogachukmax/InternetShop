@@ -54,11 +54,24 @@ export class ItemPageComponent {
     const errorDiv = document.getElementById("error") as HTMLElement;
     if (firstInput.value.trim() != "" && secondInput.value.trim() != "") {
       const objectList = {name: firstInput.value.trim(), text: secondInput.value.trim()};
+      firstInput.value = "";
+      secondInput.value = "";
+
+      const forbiddenWords = ['кокос', 'банан', 'поганий'];
+      let filteredComment = objectList.text;
+
+      forbiddenWords.forEach(word => {
+        const regex = new RegExp(word, 'gi');
+        filteredComment = filteredComment.replace(regex, '*'.repeat(word.length));
+      });
+
+      filteredComment = filteredComment.replace(/@/g, '*');
+      objectList.text = filteredComment;
+
       this.coments.push(objectList)
       this.goods.saveToLocalStorage('goodList', this.goods.goodList);
 
-      firstInput.value = "";
-      secondInput.value = "";
+
       errorDiv.style.display = "none";
     } else{
       errorDiv.style.display = "block";
