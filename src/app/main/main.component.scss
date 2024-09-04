@@ -133,3 +133,14 @@ header{
       }
    }
 }
+
+
+.footer{
+   display: flex;
+   justify-content: space-evenly;
+   text-transform: uppercase;
+   
+   p{
+      cursor: pointer;
+   }
+}
