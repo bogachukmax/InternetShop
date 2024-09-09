@@ -142,5 +142,10 @@ header{
    
    p{
       cursor: pointer;
+      transition: all 0.1s linear;
+      &:hover{
+         transform: scale(105%);
+         color: lightgreen;
+      }
    }
 }

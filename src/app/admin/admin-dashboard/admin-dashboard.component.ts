@@ -102,7 +102,7 @@ export class AdminDashboardComponent {
   }
 
   onDelete(index: number){
-    if(confirm('Are you sure? Delete this product permanent?')){
+    if(confirm('Ви впевнені? Видалити цей продукт назавжди?')){
       this.goods.removeProduct(index)
       this.products.splice(index, 1)
       this.goods.saveToLocalStorage('goodList', this.goods.goodList)

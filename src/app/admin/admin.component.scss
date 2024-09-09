@@ -2,6 +2,7 @@
     // background-image: url(../../../public/sakura.png);
     position: relative;
     overflow: hidden;
+    height: 100%;
     .header{
         display: flex;
         justify-content: center;
@@ -49,7 +50,7 @@
     .backToMain{
         display: flex;
         justify-content: center;
-        margin-top: 70px;
+        margin-top: 120px;
         margin-bottom: 5px;
     
         .backToMainBtn{
@@ -60,7 +61,7 @@
             transition: all 0.1s linear;
             &:hover{
                 color: darkolivegreen;
-                transform: scale(105%);
+                transform: scale(103%);
             }
         }
     }
