@@ -36,10 +36,10 @@ export class AdminDashboardComponent {
 
   myForm = new FormGroup({
     name: new FormControl('', [
-      Validators.required, val(/^[а-яА-Яa-zA-Z ]+$/, 'letters & spaces')
+      Validators.required, val(/^[а-яА-Яa-zA-Zіїє ]+$/, 'letters & spaces')
     ]),
     description: new FormControl('', [
-      Validators.required, val(/^[а-яА-Яa-zA-Z0-9 ]+$/, 'letters, numbers & spaces')
+      Validators.required, val(/^[а-яА-Яa-zA-Z0-9іїє ]+$/, 'letters, numbers & spaces')
     ]),
     img: new FormControl('', {
       validators: [Validators.required],
@@ -70,6 +70,9 @@ export class AdminDashboardComponent {
   }
 
   ngOnInit(){
+    this.goods.saveToLocalStorage('goodList', this.goods.goodList);
+    // this.products = this.goods.goodList
+    // console.log(this.products);
     this.products = this.goods.loadFromLocalStorage('goodList') || [];
   }
 
@@ -93,6 +96,7 @@ export class AdminDashboardComponent {
       this.products.push(newItem)
       this.myForm.reset()
       this.goods.saveToLocalStorage('goodList', this.goods.goodList);
+      this.symbolsLeft = 500 //!
     }
 
   }

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [RouterOutlet, NgIf, ReactiveFormsModule, AdminDashboardComponent],
+  imports: [RouterOutlet, RouterLink, NgIf, ReactiveFormsModule, AdminDashboardComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
