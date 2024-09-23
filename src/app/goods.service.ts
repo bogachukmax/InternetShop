@@ -21,6 +21,8 @@ export type Coments = {
 export class GoodsService {
   goodList: Item[] = [];
   busket: Item[] = [];
+  busketChange = new EventEmitter<Item[]>();
+
 
   constructor() {
     this.goodList = this.loadFromLocalStorage('goodList') || [  
@@ -118,13 +120,15 @@ export class GoodsService {
   }
 
   removeFromBusket(index: number) {
-    this.busket = this.busket.filter((_, i) => i !== index);
+    this.busket.splice(index, 1);
     this.saveToLocalStorage('busket', this.busket);
+    this.busketChange.emit(this.busket); 
   }
 
   removeAllFromBusket() {
     this.busket = [];
     this.saveToLocalStorage('busket', this.busket);
+    this.busketChange.emit(this.busket);
   }
 
   addComent(itemIndex: number, coment: Coments) {

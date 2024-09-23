@@ -20,61 +20,72 @@ export class PreviewComponent{
   @Input() coments = [];
 
 
-  ButtonPlusUrl = `/cartPlus.png`;
-  ButtonCheckedUrl = `/cartChecked.png`;
+  ButtonPlusUrl = `/cartPlus.svg`;
+  ButtonCheckedUrl = `/cartRemove.svg`;
   ButtonTF: boolean = false;
 
   busketList = inject(GoodsService);
 
   ngOnInit() {
     this.checkButtonState();
+
+    this.busketList.busketChange.subscribe(() => {
+      this.checkButtonState();
+    });
   }
 
   SmallerName(){
     return this.name.slice(0, 75);
   }
   
-  PressButtonCart(){
+  PressButtonCart() {
     if (!this.ButtonTF) {
       this.AddToBusket();
-      this.ButtonTF = true;
     } else {
       this.DeleteToBusket();
-      this.ButtonTF = false;
     }
+    this.ButtonTF = !this.ButtonTF;
   }
 
   AddToBusket() {
-    const itemExists = this.busketList.busket.some(item => 
-      item.name === this.busketList.goodList[this.index].name &&
+    const busketItem = this.busketList.goodList[this.index];
+    const existingItem = this.busketList.busket.find(item =>
+      item.name === busketItem.name &&
+      item.price === busketItem.price &&
+      item.description === busketItem.description
+    );
+  
+    if (existingItem) {
+      existingItem.amount++;
+    } else {
+      this.busketList.busket.push({ ...busketItem, amount: 1 });
+    }
+  
+    this.busketList.saveToLocalStorage('busket', this.busketList.busket);
+  }
+  
+
+  DeleteToBusket() {
+    const itemIndex = this.busketList.busket.findIndex(
+      (item) => item.name === this.busketList.goodList[this.index].name &&
       item.price === this.busketList.goodList[this.index].price &&
       item.description === this.busketList.goodList[this.index].description
     );
-  
-    if (!itemExists) { 
-      let busketItem = this.busketList.goodList[this.index];
-      this.busketList.busket.push(busketItem);
-      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
-    }
-  }
-
-  DeleteToBusket(){
-    const itemIndex = this.busketList.busket.findIndex(
-      (item) => item === this.busketList.goodList[this.index]
-    );
     if (itemIndex > -1) {
       this.busketList.busket.splice(itemIndex, 1);
+      this.busketList.saveToLocalStorage('busket', this.busketList.busket);
     } else {
       console.log('Error with Busket');
     }
   }
+  
 
   checkButtonState() {
-    if (this.busketList.busket.some(item => item === this.busketList.goodList[this.index])) {
-      this.ButtonTF = true;
-    } else{
-      this.ButtonTF = false;
-    }
+    this.ButtonTF = this.busketList.busket.some(item =>
+      item.name === this.busketList.goodList[this.index].name &&
+      item.price === this.busketList.goodList[this.index].price &&
+      item.description === this.busketList.goodList[this.index].description
+    );
   }
 
   constructor() {}

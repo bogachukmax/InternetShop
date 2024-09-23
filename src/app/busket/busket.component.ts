@@ -25,7 +25,7 @@ export class BusketComponent {
     
     if (childDiv) {
       childDiv.style.display = "block";
-    } else {}
+    } 
   }
 
   deleting(index: number) {
@@ -33,7 +33,7 @@ export class BusketComponent {
   }
 
   deletingAll(){
-    this.busketList.removeAllFromBusket();
+    this.busketList.removeAllFromBusket(); 
   }
  
   btnCloseOpen(){
