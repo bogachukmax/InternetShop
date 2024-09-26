@@ -4,15 +4,14 @@
     overflow: hidden;
     height: 100%;
     .header{
-        display: flex;
-        justify-content: center;
-
         p{
-            font-size: 50px;
-            border: 1px solid green;
-            margin-top: 10px;
+            text-align: right;
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            font-size: 44px;
+            // margin-top: 40px;
             border-radius: 4px;
-            padding: 25px;
             font-family: monospace;
             filter: drop-shadow(0px 1px 0.5px black);
         }
@@ -32,6 +31,7 @@
     
             input{
                 width: 250px;
+                height: 40px;
                 border: 2px solid black;
                 border-radius: 7px;
             }
@@ -43,7 +43,8 @@
                 color: white;
                 border-radius: 5px;
                 transition: all 0.2s linear;
-    
+                padding: 5px 10px 5px 10px;
+
                 &:hover{
                     color: black;
                     border-color: black;
@@ -73,7 +74,7 @@
 
     .forBgImg{
         position: absolute;
-        left: 5px;
+        left: 25px;
         top: 23px;
         // bottom: -200px;
         

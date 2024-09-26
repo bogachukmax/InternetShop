@@ -30,7 +30,10 @@
                 <div class="historyItem">
                     <img [src]="item.img" alt="{{item.name}}">
                     <p>{{item.name}}</p>
-                    <button (click)="onDelete(i)">Видалити</button>
+                    <div class="optionsOnItem">   
+                        <img class="editImg" src="/pencil.png" alt="#">
+                        <button (click)="onDelete(i)">Видалити</button>
+                    </div>
                 </div>
                 <hr>
             </div>
