@@ -4,16 +4,21 @@
    <header>
       <div class="container-fluid header-container">
          <div class="row row-component row-cols-3">
-            <div class="col-xxl-4 col-xl-2 col-lg-1 justify-content-end" style="display: flex; margin-right: 30px;">
+            <div class="col-xxl-4 col-xl-3 col-lg-4 d-md-block d-sm-none d-none justify-content-end" style="display: flex; margin-right: 30px;">
                <img src="https://content.rozetka.com.ua/mb_logo/image_site_light_theme/original/458307143.svg" alt="" class="logoImg">
             </div>
-            <div class=" col-xl-4 col-xl-3 col-lg-4">
+
+            <div class="d-md-none d-sm-block col-sm-2 col-0" style="display: flex;" id="logo">
+               <img src="https://content2.rozetka.com.ua/mb_logo/image_site_mini_logo/original/349608608.svg" alt="" class="logoImg" style="width: 40px;">
+            </div>
+
+            <div class="col-xl-4 col-xl-3 col-lg-4 col-md-4 col-sm-8 col-0" id="input">
                <div class="input-group">
-                  <input type="text" class="form-control find-input" placeholder="Я шукаю..." aria-label="Recipient's username" aria-describedby="button-addon2" id="findLabel" (input)="GettingValue($event)">
+                  <input type="text" class="form-control find-input" placeholder="Я шукаю..." aria-label="Recipient's username" aria-describedby="button-addon2" id="findLabel" (input)="GettingValue($event); Finding()">
                   <button class="btn btn-outline-secondary btn-success" type="button" id="button-addon2" (click)="Finding()">Знайти</button>
                </div>
             </div>
-            <div class="col-1">
+            <div class="col-1 col-0" id="carting">
                <div style="display: flex;">
                   <button class="cartButton" (click)="CartBtn()">
                      <div class="cartImg">
@@ -26,11 +31,21 @@
       </div>
    </header>
    
+   <div class="mobile-container" style="z-index: 10;">
+      <div style="display: flex;">
+         <button class="cartButton" (click)="CartBtn()">
+            <div class="cartImg">
+               <div class="badge">{{goods.busket.length}}</div>
+            </div>
+         </button>
+      </div>
+   </div>
+
    <div class="goodList container">
      <div class="main-list">
       <h2>ТОП-товари</h2>
-      <div class="goodList-item">
-         <div *ngFor="let item of filteredGoods; let i = index">
+      <div class="goodList-item" id="hello">
+         <div *ngFor="let item of filteredGoods; let i = index" class="goodList-item-container">
             <div *ngIf="i <= 4">
                <app-preview 
                [index]="i"
@@ -41,19 +56,17 @@
                ></app-preview>
             </div>
    
-            <div *ngIf="i >= 5">
-               <div [ngStyle]="{
-                  'border-top':'1px solid rgb(123, 123, 123, 0.2)'
-               }">
-                  <app-preview 
-                  [index]="i"
-                  [img]="item.img"
-                  [name]="item.name"
-                  [price]="item.price"
-                  [description]="item.description"
-                  ></app-preview>
-               </div>
-            </div>
+            <div *ngIf="i >= 5" class="goodList-item-container">
+                 <div [ngClass]="'special-borders'">
+                   <app-preview 
+                     [index]="i"
+                     [img]="item.img"
+                     [name]="item.name"
+                     [price]="item.price"
+                     [description]="item.description"
+                   ></app-preview>
+                 </div>
+            </div>             
          </div>
       </div>
      </div>
@@ -64,14 +77,5 @@
       style="z-index: 10;" 
       (closed)="handleClosedEvent($event)">
       </app-busket>
-   </div>
-</div>
-<hr>
-
-
-<div class="container-fluid">
-   <div class="container footer">
-      <p routerLink="/admin"> admin</p>
-      <p routerLink="/dwqdwqdwq"> 404</p>
    </div>
 </div>

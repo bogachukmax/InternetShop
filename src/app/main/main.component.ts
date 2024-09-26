@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { GoodsService } from '../goods.service';
-import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgFor, NgIf, NgStyle, NgClass } from '@angular/common';
 import { PreviewComponent } from "../preview/preview.component";
 import { RouterLink, RouterModule } from '@angular/router';
 import { BusketComponent } from '../busket/busket.component';
@@ -8,7 +8,7 @@ import { BusketComponent } from '../busket/busket.component';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [NgFor, NgIf, NgStyle, PreviewComponent, BusketComponent, RouterLink, RouterModule],
+  imports: [NgFor, NgIf, NgStyle, PreviewComponent, BusketComponent, RouterLink, RouterModule, NgClass],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })

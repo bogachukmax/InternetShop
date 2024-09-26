@@ -14,11 +14,11 @@
                      <img src={{item.img}} alt="">
                   </div>
    
-                  <div>
+                  <div class="ItemsName">
                      <span>{{item.name.slice(0, 170)}}</span>
                   </div>
    
-                  <div (click)="checking($event)"> 
+                  <div (click)="checking($event)" class="verticalDotsCon"> 
                      <button class="verticalDots">
                         <div class="verticalDotsMenu" style="display: none;">
                            <button (click)="deleting(i)">Прибрати</button>
@@ -36,9 +36,12 @@
                   <button class="btn btn-light" (click)="btnMinus(item)">
                      <div class="minusBtn">-</div>
                   </button>
-                  <div class="price">
+                  <div class="price" id="price">
                      {{calculateTotalPrice(item.price, item.amount)}}
                   </div>
+               </div>
+               <div class="price2">
+                  {{calculateTotalPrice(item.price, item.amount)}}
                </div>
             </li>
          </ul>

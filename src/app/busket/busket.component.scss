@@ -175,3 +175,42 @@
    }
 }
 
+.price2{
+   display: none;
+}
+
+@media (max-width: 566px) {
+   .busket-items-inside{
+      flex-direction: column;
+   }
+
+   .verticalDotsCon{
+      display: none;
+   }
+
+   .ItemsName{
+      margin: 20px 0px;
+   }
+
+   #price{
+      display: none;
+   }
+
+   .price2{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      
+      font-size: 25px;
+      color: #e63f3f;
+      margin: 20px 0px;
+   }
+
+   .purchase-box{
+      text-align: center;
+   }
+
+   .busket-items-inside{
+      align-items: center;
+   }
+}

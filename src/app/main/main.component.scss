@@ -134,6 +134,9 @@ header{
    }
 }
 
+.special-borders{
+   border-top: 1px solid rgba(123, 123, 123, 0.2);
+}
 
 .footer{
    display: flex;
@@ -146,6 +149,132 @@ header{
       &:hover{
          transform: scale(105%);
          color: lightgreen;
+      }
+   }
+}
+
+@media (min-width: 770px) and (max-width: 1022px) {
+   .goodList{
+      padding: 0px;
+
+      .goodList-item-container{
+         width: 240px;
+         text-align: center;
+      }
+
+      .special-borders{
+         border-top: none;
+      }
+   }
+}
+
+@media (min-width: 575px) and (max-width: 770px) {
+
+   .goodList{
+      padding: 0px;
+
+      .goodList-item-container{
+         width: 240px;
+         text-align: center;
+         border: none;
+      }
+
+      .special-borders{
+         border-top: none;
+      }
+   }
+
+   .logoImg{
+      img{
+         width: 40px;
+         height: 40px;
+      }
+   }
+
+   #logo{
+      width: 40px;
+      margin-right: 30px
+   }
+}
+
+@media (min-width: 545px) and (max-width: 575px){
+   #logo{
+      width: 40px;
+      margin-right: 30px
+   }
+
+   #input{
+      width: 70%;
+   }
+
+   .special-borders{
+      border-top: none;
+   }
+
+   #hello{
+      justify-content: center;
+   }
+}
+
+@media (max-width: 545px) {
+   .goodList-item-container{
+      margin-bottom: 20px;
+      border: 1px solid rgb(207, 207, 207);
+   }
+
+   #logo{
+      width: 40px;
+      margin-right: 30px
+   }
+
+   #input{
+      width: 70%;
+   }
+
+   .special-borders{
+      border-top: none;
+   }
+
+   #hello{
+      justify-content: center;
+   }
+}
+
+.mobile-container{
+   display: none;
+}
+
+@media (max-width: 450px) {
+   #carting{
+      display: none;
+   }
+
+   .mobile-container{
+      width: 100%;
+      display: flex;
+      position:fixed;
+      justify-content: flex-end;
+
+      .cartButton{
+         width: 45px;
+         height: 45px;
+         border-radius: 10px;
+
+         margin-top: 20px;
+         margin-right: 20px;
+         background-color: #221f1f;
+
+         background-image: url("/cartWhite.png");
+         background-size: contain;
+         position: relative;
+
+         .badge{
+            position: absolute;
+            top: 25px;
+            right: -10px;
+            background-color: #00a046;
+            border-radius: 10px;
+         }
       }
    }
 }
