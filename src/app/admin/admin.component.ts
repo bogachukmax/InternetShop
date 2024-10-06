@@ -3,11 +3,12 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NgIf } from '@angular/common';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, NgIf, ReactiveFormsModule, AdminDashboardComponent],
+  imports: [ItemEditComponent, RouterOutlet, RouterLink, NgIf, ReactiveFormsModule, AdminDashboardComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

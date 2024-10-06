@@ -3,7 +3,7 @@
 <div class="forBody">
     <div class="container-fluid">
         <div class="container header">
-            <p>ADMIN CONTROL PANEL</p>
+            <p class="adP">ADMIN CONTROL PANEL</p>
         </div>
     </div>
     
@@ -11,25 +11,22 @@
         <div class="container logIn">
             <div class="form">
                 <input type="text" (keypress)="onEnter($event)" [formControl]="inpControl" placeholder="pull up if you're the real one">
-                <button type="submit" (click)="onLog()">LOG IN</button>
+                <div class="admBtns">
+                    <button class="admLogBtn" type="submit" (click)="onLog()">LOG IN</button>
+                    <button class="backToMainBtn" routerLink="/">НА ГОЛОВНУ</button>
+                </div>
             </div>
         </div>
     </div>
     
     
     <app-admin-dashboard *ngIf="valid"></app-admin-dashboard>
-    
-    <div class="container-fluid">
-        <div class="container backToMain">
-            <button class="backToMainBtn" routerLink="/">НА ГОЛОВНУ</button>
-        </div>
-    </div>
-
-
 
     <div class="forBgImg">
-        <img routerLink="/" style="cursor: pointer;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/ROZETKA-Logo-L3-B-RGB.png/1200px-ROZETKA-Logo-L3-B-RGB.png" alt="#" class="logoImg">
+        <img routerLink="/" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/ROZETKA-Logo-L3-B-RGB.png/1200px-ROZETKA-Logo-L3-B-RGB.png" alt="#">
     </div>
 </div>
+
+<app-item-edit></app-item-edit>
 
 <router-outlet></router-outlet>

@@ -4,11 +4,11 @@ import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@
 import { val } from '../shared/val.directive';
 import { imgUpload } from '../shared/imgUpload.directive';
 import { GoodsService, Item } from '../../goods.service';
-
+import { ItemEditComponent } from '../item-edit/item-edit.component';
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor],
+  imports: [ReactiveFormsModule, NgIf, NgFor, ItemEditComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss'
 })
@@ -33,6 +33,7 @@ export class AdminDashboardComponent {
   descBorder: string = this.bgClGreen
   imgBorder: string = this.bgClGreen
   costBorder: string = this.bgClGreen
+  editingProductIndex: number | null = null;
 
   myForm = new FormGroup({
     name: new FormControl('', [
@@ -108,4 +109,44 @@ export class AdminDashboardComponent {
       this.goods.saveToLocalStorage('goodList', this.goods.goodList)
     }
   }
+
+  onEdit(item: Item, index: number){
+    this.editingProductIndex = index; // Сохраняем индекс редактируемого товара
+    this.myForm.patchValue({
+      name: item.name,
+      description: item.description,
+      img: item.img,
+      cost: item.price.replace('₴', '') // Убираем знак валюты для редактирования
+    });
+    this.symbolsLeft = this.maxLengthDesc - this.myForm.controls.description.value!.length;
+  }
+
+  onSubmit2(){
+    if (this.myForm.valid) {
+      const updatedItem: Item = {
+        name: this.myForm.controls.name.value!,
+        description: this.myForm.controls.description.value!,
+        img: this.myForm.controls.img.value!,
+        price: `${this.myForm.controls.cost.value!}₴`,
+        amount: 1,
+        coments: []
+      };
+      
+      if (this.editingProductIndex !== null) {
+        // Если редактируем, обновляем существующий товар
+        this.goods.goodList[this.editingProductIndex] = updatedItem;
+        this.products[this.editingProductIndex] = updatedItem;
+        this.editingProductIndex = null; // Сбрасываем индекс после редактирования
+      } else {
+        // Если не редактируем, добавляем новый товар
+        this.goods.goodList.push(updatedItem);
+        this.products.push(updatedItem);
+      }
+
+      this.myForm.reset();
+      this.goods.saveToLocalStorage('goodList', this.goods.goodList);
+      this.symbolsLeft = 500;
+    }
+  }
+  
 }

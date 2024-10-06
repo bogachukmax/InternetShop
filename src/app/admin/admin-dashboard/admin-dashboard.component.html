@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="forms">
-            <p class="additionP">Додавання</p>
+            <p class="additionP">{{ editingProductIndex !== null ? 'Редагування' : 'Додавання' }}</p>
             <form [formGroup]="myForm">
                 <label for="itmName">Назва:</label>
                 <input [style.borderColor]="nameBorder" type="text" formControlName="name" name="itmName">
@@ -21,7 +21,9 @@
                 <p class="wrongVal" style="width: 110px;"*ngIf="this.myForm.controls.cost.errors && this.myForm.controls.cost.value !== '' && !this.myForm.controls.cost.pristine"><span>❗</span> Некоректна ціна</p>
             </form>
 
-            <button class="addBtn" [disabled]="this.myForm.status === 'INVALID'" type="submit" (click)="onSubmit()">Додати</button>
+            <button class="addBtn" [disabled]="this.myForm.status === 'INVALID'" type="submit" (click)="onSubmit2()">
+                {{ editingProductIndex !== null ? 'Оновити' : 'Додати' }}
+            </button>
         </div>
 
         <div class="history">
@@ -31,7 +33,7 @@
                     <img [src]="item.img" alt="{{item.name}}">
                     <p>{{item.name}}</p>
                     <div class="optionsOnItem">   
-                        <img class="editImg" src="/pencil.png" alt="#">
+                        <img class="editImg" src="/pencil.png" (click)="onEdit(item, i)" alt="#">
                         <button (click)="onDelete(i)">Видалити</button>
                     </div>
                 </div>

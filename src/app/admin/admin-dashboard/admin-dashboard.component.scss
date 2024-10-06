@@ -2,10 +2,14 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 160px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding: 0 10px;
 
     .forms{
-        width: 470px;
+        max-width: 470px;
         height: 550px;
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -13,6 +17,8 @@
         border: 1px solid green;
         box-shadow: 0px 0px 1px green;
         border-radius: 7px;
+        margin-bottom: 20px;
+        padding: 10px;
 
         .additionP{
             font-size: 17px;
@@ -42,7 +48,9 @@
             }
             
             input, textarea{
-               width: 370px;
+            //    width: 370px;
+                // width: 100%;
+                box-sizing: border-box;
                border: 2px solid green;
                border-radius: 3px;
             }
@@ -62,7 +70,8 @@
             color: white;
             text-transform: uppercase;
             padding: 5px;
-            width: 100px;
+            // width: 100px;
+            width: 70%;
             margin-top: 20px;
             transition: all 0.1s linear;
             cursor: pointer;
@@ -80,9 +89,10 @@
         border: 1px solid green;
         box-shadow: 0px 0px 1px green;
         border-radius: 7px;
-        width: 500px;
+        max-width: 500px;
         height: 550px;
         overflow: auto;
+        padding: 10px;
 
         .totalP{
             font-size: 17px;
@@ -136,6 +146,101 @@
         hr{
             background-color: green;
             height: 1px;
+        }
+    }
+}
+
+/* Медиазапросы для различных устройств */
+
+/* Для планшетов (ширина от 768px до 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .forms, .history {
+        width: 90%; /* Ширина блока будет 90% экрана */
+    }
+
+    form input, form textarea {
+        width: 90%; /* Инпуты займут 90% ширины */
+    }
+}
+
+/* Для мобильных устройств (ширина от 480px до 767px) */
+@media (max-width: 767px) {
+    .forms, .history {
+        width: 100%; /* Ширина на 100% экрана для мобильных устройств */
+        height: auto; /* Автоматическая высота для мобильных */
+    }
+
+    form input, form textarea {
+        width: 90%; /* Инпуты и текстовое поле также занимают 90% ширины экрана */
+    }
+
+    .addBtn {
+        width: 80%; /* Кнопка будет занимать 80% ширины на маленьких экранах */
+    }
+
+    .symbolsTracker {
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+}
+
+/* Для маленьких мобильных устройств (ширина до 479px) */
+@media (max-width: 479px) {
+
+    .container{
+        padding: 0 5px;
+    }
+
+    .forms, .history{
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+
+    .symbolsTracker {
+        font-size: 11px; /* Уменьшение размера текста для трекера символов */
+    }
+
+    .historyItem img {
+        width: 60px;
+        height: 60px;
+    }
+
+    button {
+        font-size: 9px;
+        width: 40px;
+        height: 25px;
+    }
+ 
+    input, textarea{
+        width: 70px;
+    }
+
+}
+
+
+@media (min-width: 426px) and (max-width: 2560px){
+    .forms{
+        form{
+            input, textarea{
+                width: 370px;
+            }
+        }
+    }
+}
+@media (min-width: 320px) and (max-width: 426px){
+    .forms{
+        form{
+            input, textarea{
+                width: 250px;
+            }
         }
     }
 }

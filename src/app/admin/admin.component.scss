@@ -4,12 +4,13 @@
     overflow: hidden;
     height: 100%;
     .header{
-        p{
+        .adP{
+
             text-align: right;
             position: absolute;
-            top: 40px;
+            top: 31px;
             right: 30px;
-            font-size: 44px;
+            font-size: 35px;
             // margin-top: 40px;
             border-radius: 4px;
             font-family: monospace;
@@ -22,6 +23,7 @@
         height: 100%;
         display: flex;
         justify-content: center;
+        margin-top: 70px;
     
         .form{
             display: flex;
@@ -36,69 +38,127 @@
                 border-radius: 7px;
             }
             
-            button{
+            .admBtns{
+                width: 200px;
                 margin-top: 20px;
-                border: 1px solid white;
-                background-color: lightgreen;
-                color: white;
-                border-radius: 5px;
-                transition: all 0.2s linear;
-                padding: 5px 10px 5px 10px;
+                display: flex;
+                justify-content: space-evenly;
 
-                &:hover{
-                    color: black;
-                    border-color: black;
+                .admLogBtn{
+                    border: 1px solid white;
+                    background-color: green;
+                    color: white;
+                    border-radius: 5px;
+                    transition: all 0.2s linear;
+                    padding: 5px 10px 5px 10px;
+    
+                    &:hover{
+                        color: black;
+                        border-color: black;
+                    }
                 }
-            }
-        }
-    }
+
+                .backToMainBtn{
+                    border: 1px solid white;
+                    background-color: red;
+                    color: white;
+                    border-radius: 5px;
+                    transition: all 0.2s linear;
+                    padding: 5px 10px 5px 10px;
     
-    .backToMain{
-        display: flex;
-        justify-content: center;
-        margin-top: 120px;
-        margin-bottom: 5px;
-    
-        .backToMainBtn{
-            border: 1px solid black;
-            border-radius: 3px;
-            background-color: green;
-            padding: 5px;
-            color: white;
-            transition: all 0.1s linear;
-            &:hover{
-                transform: scale(102%);
+                    &:hover{
+                        color: black;
+                        border-color: black;
+                    }
+                }
             }
         }
     }
 
     .forBgImg{
         position: absolute;
-        left: 25px;
+        left: 15px;
         top: 23px;
         // bottom: -200px;
         
         img{
-            // width: 300px;
-            // height: 300px;
-            width: 410px;
-            height: 100px;
+            cursor: pointer;
+            width: 290px;
+            height: 70px;
+        }
+    }
+}
+
+/* Адаптация для мобильных устройств (от 480px до 767px) */
+@media screen and (max-width: 767px) {
+    .header {
+        .adP{
+            display: none;
+            font-size: 15px;
+            top: 20px;
+            right: 15px;
+
         }
     }
 
-    // @media screen and (min-width: 768px) and (max-width: 1919px) {
-    //     .forBgImg{
-    //         position: absolute;
-    //         right: -1px;
-    //         top: 0;
-    //         // bottom: -200px;
-            
-    //         .adminBgImg{
-    //             width: 300px;
-    //             height: 300px;
-    //             // width: 500px;
-    //             // height: 430px;
-    //         }
-    //     }
-    // }
+    .logIn {
+        margin-top: 30px;
+
+        .form {
+            margin-top: 60px;
+
+            input {
+                width: 100%; /* Полная ширина для инпутов */
+            }
+
+            .admBtns {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    }
 }
+
+/* Адаптация для маленьких мобильных устройств (до 479px) */
+@media screen and (max-width: 479px) {
+    .header p {
+        display: none;
+        font-size: 10px;
+        top: 15px;
+        right: 10px;
+    }
+
+    .logIn {
+        margin-top: 50px;
+
+        .form {
+            margin-top: 40px;
+
+            input {
+                width: 100%;
+            }
+
+            .admBtns {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+
+                .admLogBtn, .backToMainBtn {
+                    width: 90%; /* Полная ширина кнопок */
+                    margin-bottom: 10px; /* Добавим отступы между кнопками */
+                }
+            }
+        }
+    }
+
+    .forBgImg{
+        width: 10px;
+        height: 20px;
+        left: 0px;
+        top: 0px;
+        // bottom: -200px;
+        
+
+    }
+}
+

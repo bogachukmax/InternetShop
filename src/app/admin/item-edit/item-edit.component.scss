@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: center;
+
+    section{
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
