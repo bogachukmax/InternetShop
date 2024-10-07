@@ -12,4 +12,12 @@ import { AdminComponent } from './admin/admin.component';
 })
 export class AppComponent {
   title = 'internet-shop';
+
+  ngAfterViewInit() {
+    // Убираем загрузочный экран после загрузки компонента
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+    }
+  }
 }
