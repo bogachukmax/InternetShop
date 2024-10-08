@@ -24,6 +24,8 @@
             <button class="addBtn" [disabled]="this.myForm.status === 'INVALID'" type="submit" (click)="onSubmit2()">
                 {{ editingProductIndex !== null ? 'Оновити' : 'Додати' }}
             </button>
+
+            <button *ngIf="editingProductIndex !== null" class="cancelBtn" type="button" (click)="onCancelEdit()">Отменить</button>
         </div>
 
         <div class="history">

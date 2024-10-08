@@ -149,4 +149,10 @@ export class AdminDashboardComponent {
     }
   }
   
+  onCancelEdit() {
+    this.editingProductIndex = null; // Сбрасываем индекс редактируемого товара
+    this.myForm.reset(); // Очищаем форму
+    this.symbolsLeft = this.maxLengthDesc; // Сбрасываем счётчик символов
+  }
+  
 }

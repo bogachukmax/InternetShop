@@ -82,7 +82,26 @@
                 color: black;
             }
         }
-        
+        .cancelBtn{
+            border: 1px solid black;
+            border-radius: 3px;
+            background-color: red;
+            color: white;
+            text-transform: uppercase;
+            padding: 5px;
+            // width: 100px;
+            width: 70%;
+            margin-top: 20px;
+            transition: all 0.1s linear;
+            cursor: pointer;
+    
+            &:hover{
+                background-color: white;
+                border-color: red;
+                color: red;
+            }
+        }
+    
     }
 
     .history{
@@ -149,6 +168,8 @@
         }
     }
 }
+
+
 
 /* Медиазапросы для различных устройств */
 
